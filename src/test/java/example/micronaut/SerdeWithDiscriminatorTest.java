@@ -36,7 +36,7 @@ class SerdeWithDiscriminatorTest {
                 // For testing with the 4.0.3 version of the OpenAPI plugin, "DETAILED" should be changed to
                 // "DetailedBookInfo" due to a separate bug, that was fixed in
                 // https://github.com/micronaut-projects/micronaut-openapi/issues/1163
-                "{\"type\":\"DETAILED\",\"name\":\"Never-ending Story\",\"author\":\"Michael Ende\",\"isbn\":\"SOME_ISBN\"}",
+                "{\"type\":\"DETAILED\",\"author\":\"Michael Ende\",\"isbn\":\"SOME_ISBN\",\"name\":\"Never-ending Story\"}",
                 bookInfoString
         );
     }
@@ -48,7 +48,7 @@ class SerdeWithDiscriminatorTest {
                 // For testing with the 4.0.3 version of the OpenAPI plugin, "DETAILED" should be changed to
                 // "DetailedBookInfo" due to a separate bug, that was fixed in
                 // https://github.com/micronaut-projects/micronaut-openapi/issues/1163
-                "{\"type\":\"DETAILED\",\"name\":\"Never-ending Story\",\"author\":\"Michael Ende\",\"isbn\":\"SOME_ISBN\"}",
+                "{\"type\":\"DETAILED\",\"author\":\"Michael Ende\",\"isbn\":\"SOME_ISBN\",\"name\":\"Never-ending Story\"}",
                 BookInfo.class
         );
 
