@@ -33,9 +33,9 @@ class SerdeWithDiscriminatorTest {
         System.out.println(bookInfoString);
 
         Assertions.assertEquals(
-                // "DetailedBookInfo" should really be "DETAILED", but that is a separate bug, that was fixed in
+                // For testing with the 4.0.3 version of the OpenAPI plugin, "DETAILED" should be changed to
+                // "DetailedBookInfo" due to a separate bug, that was fixed in
                 // https://github.com/micronaut-projects/micronaut-openapi/issues/1163
-                // So for testing with the 4.0.3 version of the OpenAPI plugin, "DETAILED" should be changed to "DetailedBookInfo"
                 "{\"type\":\"DETAILED\",\"name\":\"Never-ending Story\",\"author\":\"Michael Ende\",\"isbn\":\"SOME_ISBN\"}",
                 bookInfoString
         );
@@ -45,9 +45,9 @@ class SerdeWithDiscriminatorTest {
     void testDeserializationForDetailedBookInfo() throws IOException {
 
         var bookInfo = objectMapper.readValue(
-                // "DetailedBookInfo" should really be "DETAILED", but that is a separate bug, that was fixed in
+                // For testing with the 4.0.3 version of the OpenAPI plugin, "DETAILED" should be changed to
+                // "DetailedBookInfo" due to a separate bug, that was fixed in
                 // https://github.com/micronaut-projects/micronaut-openapi/issues/1163
-                // So for testing with the 4.0.3 version of the OpenAPI plugin, "DETAILED" should be changed to "DetailedBookInfo"
                 "{\"type\":\"DETAILED\",\"name\":\"Never-ending Story\",\"author\":\"Michael Ende\",\"isbn\":\"SOME_ISBN\"}",
                 BookInfo.class
         );
