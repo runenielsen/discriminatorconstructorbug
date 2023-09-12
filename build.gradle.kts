@@ -2,7 +2,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("io.micronaut.application") version "4.1.0"
     id("io.micronaut.aot") version "4.1.0"
-    id("io.micronaut.openapi") version "4.0.3"
+    id("io.micronaut.openapi") version "4.1.0"
 }
 
 version = "0.1"
@@ -51,13 +51,13 @@ micronaut {
         optimizeNetty.set(true)
     }
     openapi {
-        server(file("src/main/resources/discriminatorgeneration.yml")) {
+        server(file("src/main/resources/discriminatorconstructorbug.yml")) {
             apiPackageName = "com.example.openapi.server.api"
             modelPackageName = "com.example.openapi.server.model"
             useReactive = false
         }
 
-        client(file("src/main/resources/discriminatorgeneration.yml")) {
+        client(file("src/main/resources/discriminatorconstructorbug.yml")) {
             apiPackageName = "com.example.openapi.client.api"
             modelPackageName = "com.example.openapi.client.model"
             useReactive = false

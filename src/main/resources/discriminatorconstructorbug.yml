@@ -13,23 +13,23 @@ tags: # <3>
 #end::info[]
 #tag::paths[]
 paths:
-#end::paths[]
-#tag::search[]
+  #end::paths[]
+  #tag::search[]
   /search:
     get: # <1>
-      tags: 
+      tags:
         - books # <2>
       summary: Search for a book
       operationId: search # <3>
       parameters: # <4>
         - name: book-name
           in: query
-          schema: 
+          schema:
             type: string
             minLength: 3 # <5>
         - name: author-name
           in: query
-          schema: 
+          schema:
             type: string
       responses: # <6>
         "200": # <7>
@@ -37,13 +37,13 @@ paths:
           content:
             "application/json":
               schema:
-                type: array, 
-                items: 
+                type: array,
+                items:
                   $ref: "#/components/schemas/BookInfo"
         "400": # <8>
           description: Bad Request
-#end::search[]
-#tag::add[]
+  #end::search[]
+  #tag::add[]
   /add:
     post: # <1>
       tags: [books]
@@ -52,8 +52,8 @@ paths:
       requestBody: # <2>
         required: true
         content:
-          "application/json": 
-            schema: 
+          "application/json":
+            schema:
               $ref: "#/components/schemas/BookInfo" # <3>
       responses:
         "200":
@@ -89,19 +89,12 @@ components:
           properties: # <2>
             author: {type: string, minLength: 3}
           required: ["author"]
-    ParentBookInfo:
-      allOf:
-        - $ref: '#/components/schemas/BookInfo'
-        - type: object
-          properties: # <2>
-            author: {type: string, minLength: 3}
-          required: ["author"]
     DetailedBookInfo:
       x-all-of-name: DetailedBookInfo
       allOf:
-        - $ref: '#/components/schemas/ParentBookInfo'
+        - $ref: '#/components/schemas/BasicBookInfo'
         - type: object
           properties: # <2>
-            ISBN: {type: string, pattern: "[0-9]{13}"}
-          required: ["ISBN"]
+            isbn: {type: string, pattern: "[0-9]{13}"}
+          required: ["isbn"]
 #end::components[]

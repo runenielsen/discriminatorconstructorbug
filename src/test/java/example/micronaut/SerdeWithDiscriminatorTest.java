@@ -25,6 +25,7 @@ class SerdeWithDiscriminatorTest {
                 new DetailedBookInfo(
                         "Michael Ende",
                         "SOME_ISBN",
+                        null,
                         "Never-ending Story"
                 )
         );
@@ -44,6 +45,7 @@ class SerdeWithDiscriminatorTest {
                 new DetailedBookInfo(
                         "Michael Ende",
                         "SOME_ISBN",
+                        null,
                         "Never-ending Story"
                 )
         );

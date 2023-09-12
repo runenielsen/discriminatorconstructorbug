@@ -1,3 +1,3 @@
 
-rootProject.name="discriminatorgeneration"
+rootProject.name="discriminatorconstructorbug"
 
