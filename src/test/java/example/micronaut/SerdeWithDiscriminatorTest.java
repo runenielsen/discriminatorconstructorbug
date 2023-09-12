@@ -23,37 +23,20 @@ class SerdeWithDiscriminatorTest {
 
         String bookInfoString = objectMapper.writeValueAsString(
                 new DetailedBookInfo(
-                        "Michael Ende",
                         "SOME_ISBN",
+                        "Never-ending Story",
                         null,
-                        "Never-ending Story"
+                        "Michael Ende"
                 )
         );
 
         System.out.println(bookInfoString);
 
         Assertions.assertEquals(
-                "{\"type\":\"DETAILED\",\"name\":\"Never-ending Story\",\"author\":\"Michael Ende\",\"ISBN\":\"SOME_ISBN\"}",
-                bookInfoString
-        );
-    }
-
-    @Test
-    void testSerializationForDetailedBookInfoWithDiscriminatorSet() throws IOException {
-
-        String bookInfoString = objectMapper.writeValueAsString(
-                new DetailedBookInfo(
-                        "Michael Ende",
-                        "SOME_ISBN",
-                        null,
-                        "Never-ending Story"
-                )
-        );
-
-        System.out.println(bookInfoString);
-
-        Assertions.assertEquals(
-                "{\"type\":\"DETAILED\",\"name\":\"Never-ending Story\",\"author\":\"Michael Ende\",\"ISBN\":\"SOME_ISBN\"}",
+                // "DetailedBookInfo" should really be "DETAILED", but that is a separate bug, that was fixed in
+                // https://github.com/micronaut-projects/micronaut-openapi/issues/1163
+                // So for testing with the 4.0.3 version of the OpenAPI plugin, "DETAILED" should be changed to "DetailedBookInfo"
+                "{\"type\":\"DETAILED\",\"name\":\"Never-ending Story\",\"author\":\"Michael Ende\",\"isbn\":\"SOME_ISBN\"}",
                 bookInfoString
         );
     }
@@ -62,14 +45,17 @@ class SerdeWithDiscriminatorTest {
     void testDeserializationForDetailedBookInfo() throws IOException {
 
         var bookInfo = objectMapper.readValue(
-                "{\"type\":\"DETAILED\",\"name\":\"Never-ending Story\",\"author\":\"Michael Ende\",\"ISBN\":\"SOME_ISBN\"}",
+                // "DetailedBookInfo" should really be "DETAILED", but that is a separate bug, that was fixed in
+                // https://github.com/micronaut-projects/micronaut-openapi/issues/1163
+                // So for testing with the 4.0.3 version of the OpenAPI plugin, "DETAILED" should be changed to "DetailedBookInfo"
+                "{\"type\":\"DETAILED\",\"name\":\"Never-ending Story\",\"author\":\"Michael Ende\",\"isbn\":\"SOME_ISBN\"}",
                 BookInfo.class
         );
 
         System.out.println(bookInfo);
 
         Assertions.assertEquals(
-                "DetailedBookInfo(name: Never-ending Story, type: null, author: Michael Ende, ISBN: SOME_ISBN)",
+                "DetailedBookInfo(name: Never-ending Story, type: null, author: Michael Ende, isbn: SOME_ISBN)",
                 bookInfo.toString()
         );
     }
